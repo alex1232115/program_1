@@ -11,17 +11,6 @@ public class PaintPanel extends JPanel {
     private int x1, y1, x2, y2;
     private Graphics g;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Paint");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        JPanel panel = new PaintPanel();
-        frame.add(panel);
-
-        frame.pack();
-        frame.setVisible(true);
-    }
-
 
     PaintPanel() {
 
@@ -32,25 +21,30 @@ public class PaintPanel extends JPanel {
 
         this.addMouseListener(handler);
         this.addMouseMotionListener(handler);
+
+
     }
 
     private class MyMouseHandler extends MouseAdapter {
-        public void mousePressed(MouseEvent e) {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
             x1 = e.getX();
             y1 = e.getY();
 
+            System.out.println("x:" +x1+ "y" +y1);
             g = getGraphics();
-
             x2 = x1;
             y2 = y1;
         }
 
-        public void mouseDragged(MouseEvent e) {
+        @Override
+        public void mouseReleased(MouseEvent e)
+        {
             x1 = e.getX();
             y1 = e.getY();
-
             g.drawLine(x1, y1, x2, y2);
-
             x2 = x1;
             y2 = y1;
         }

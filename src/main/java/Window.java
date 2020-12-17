@@ -24,6 +24,7 @@ public class Window extends JFrame {
         sketch.add(line);
         line.addActionListener(new ActionListener()
         {
+
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println ("ActionListener.actionPerformed : line");
@@ -40,12 +41,30 @@ public class Window extends JFrame {
         return sketch;
     }
     private JMenu create3Dmodel(){
-        JMenu model = new JMenu("Модель");
-        return model;
+        JMenu models = new JMenu("Модели");
+        JMenuItem model = new JMenuItem("3DМодели");
+        models.add(model);
+        model.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("ActionListener.actionPerformed : model");
+                ModelWindow modelWindow = new ModelWindow();
+            }
+        });
+        return models;
     }
 
     private JMenu createFile(){
-        JMenu file = new JMenu("Файл");
-        return file;
-    }
+        JMenu files = new JMenu("Файл");
+        JMenuItem file = new JMenuItem("Открыть файл");
+        files.add(file);
+        file.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("ActionListener.actionPerformed : file");
+                FileWindow fileWindow = new FileWindow();
             }
+        });
+        return files;
+    }
+}
